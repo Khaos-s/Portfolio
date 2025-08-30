@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "daisyui" {
+    themes: night --default;
+}
+
+@font-face {
+    font-family: Centra;
+    src: url();
+}
