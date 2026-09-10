@@ -1,12 +1,40 @@
-# React + Vite
+# John Arvy Lopez Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive React and Vite portfolio with a transparent landing-page header, a project-first layout, and an original horizontal project reel.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm ci
+npm run dev
+npm run lint
+npm run build
+```
 
-## Expanding the ESLint configuration
+## Content updates
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Portfolio content is centrally stored in `src/content/portfolio.js`. Replace all project entries marked as sample content with verified descriptions, screenshots, contributions, outcomes, repositories, and live URLs before publishing.
+
+Add a résumé at `public/resume.pdf` only when it is current and ready to share.
+
+## Contact form
+
+The Vercel Function at `api/contact.js` uses Resend. Copy `.env.example` to `.env.local` for local configuration; never commit that file. In Vercel, add these as Sensitive Environment Variables:
+
+- `RESEND_API_KEY`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL`
+- `SITE_URL`
+
+The form includes validation, a honeypot, maximum field sizes, and an optional production-origin check. Add durable rate limiting (for example, Vercel KV/Upstash) before exposing it to high traffic.
+
+## Vercel deployment
+
+Import the repository into Vercel and set the project Root Directory to `frontend`.
+
+- Framework preset: Vite
+- Install command: `npm ci`
+- Build command: `npm run build`
+- Output directory: `dist`
+
+`vercel.json` contains the SPA fallback needed for React Router routes and baseline response headers. Configure the environment variables, deploy a Preview deployment, test direct visits to `/projects`, `/projects/:slug`, `/resume`, and `/contact`, then attach the production domain.
