@@ -1,0 +1,93 @@
+/* Cinematic hero: live type and controls layered around the edited portrait. */
+@font-face {
+  font-family: 'Anton';
+  src: url('../assets/font/hero/Anton-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Yellowtail';
+  src: url('../assets/font/hero/Yellowtail-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+.home-hero.cinematic-hero {
+  --hero-red: #f23848;
+  --display: 'Anton', 'Arial Narrow', sans-serif;
+  position: relative;
+  isolation: isolate;
+  min-height: max(800px, 100svh);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: calc(var(--header-h) + 100px) 0 120px;
+  color: var(--off-white);
+  background: #080808;
+}
+.cinematic-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background: radial-gradient(ellipse at 58% 46%, #650d1838, transparent 56%);
+}
+.hero-utility { position: absolute; top: calc(var(--header-h) + 26px); left: 0; right: 0; display: flex; justify-content: space-between; gap: 24px; font-size: .8125rem; line-height: 1.6; letter-spacing: .065em; text-transform: uppercase; color: #a49b9c; }
+.hero-backdrop-word { position: absolute; z-index: -2; top: 19%; left: 50%; transform: translateX(-50%); width: max-content; font: 400 clamp(8rem, 22vw, 24rem)/1 var(--display); letter-spacing: -.025em; text-transform: uppercase; color: #74101b; background: linear-gradient(#881321 10%, #480c14 58%, #080808 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; user-select: none; pointer-events: none; }
+.cinematic-hero .hero-grid { position: relative; display: block; z-index: 2; pointer-events: none; }
+.cinematic-hero .hero-copy { width: min(32%, 390px); pointer-events: auto; }
+.cinematic-hero .hero-greeting { font: 400 clamp(1.8rem, 2.8vw, 2.6rem)/1.2 'Yellowtail', cursive; margin: 0 0 14px; }
+.cinematic-hero .hero-title { font: 400 clamp(3.5rem, 5.6vw, 6rem)/.96 var(--display); letter-spacing: -.015em; text-transform: uppercase; margin: 0 0 20px; color: #f5f2ed; }
+.hero-role { margin: 0 0 24px; color: var(--hero-red); font: 400 1.125rem/1.3 var(--display); letter-spacing: .065em; text-transform: uppercase; }
+.cinematic-hero .hero-description { max-width: 34ch; color: #aaa1a3; font-size: .875rem; line-height: 1.8; margin: 0 0 30px; }
+.cinematic-hero .hero-actions { gap: 24px; }
+.cinematic-hero .button-primary { background: #b51628; color: #fff; border: 0; }
+.cinematic-hero .button-primary:hover { background: #d51c31; }
+.cinematic-hero .hero-github { color: #f5f2ed; }
+.cinematic-hero .hero-github:hover { color: #ff8993; }
+.cinematic-hero .cinematic-portrait { position: absolute; z-index: 0; bottom: 0; left: 56%; transform: translateX(-50%); width: min(66vw, 920px); max-width: none; justify-self: auto; pointer-events: none; }
+.cinematic-hero .cinematic-portrait img { display: block; width: 100%; height: auto; mask-image: linear-gradient(#000 74%, transparent 100%); }
+.hero-annotation { position: absolute; z-index: 2; right: max(48px, calc((100% - 1240px) / 2)); top: 52%; display: flex; align-items: flex-start; gap: 12px; width: min(16%, 190px); margin: 0; color: #b9b0b1; font-size: .875rem; line-height: 1.7; }
+.hero-annotation svg { flex-shrink: 0; margin-top: 4px; color: #f23848; }
+.cinematic-hero .hero-bottom { bottom: 30px; z-index: 2; color: #a49b9c; font-size: .8125rem; letter-spacing: .08em; text-transform: uppercase; }
+
+/* Home navigation shares the hero's dark backdrop; other routes keep their theme. */
+.site-header.site-header-dark { --accent: #f78a95; --accent-bright: #ffc0c6; --bg-surface: #111; --bg-elevated: #241b1c; --accent-soft: #3c1b21; --border: #3c3032; color: #f5f2ed; background: #080808; }
+.site-header-dark .header-cta { background: #251719; color: #f5f2ed; }
+.site-header-dark .header-cta:hover { background: #8b0d1a; }
+.site-header-dark .menu-toggle { color: #f5f2ed; }
+.site-header-dark .mobile-nav { color: #f5f2ed; }
+
+@media (max-width: 1050px) and (min-width: 701px) {
+  .home-hero.cinematic-hero { min-height: max(760px, 100svh); }
+  .cinematic-hero .hero-copy { width: 36%; }
+  .cinematic-hero .hero-title { font-size: clamp(3rem, 6vw, 4rem); }
+  .cinematic-hero .cinematic-portrait { width: min(92vw, 920px); left: 55%; bottom: 40px; }
+  .hero-backdrop-word { top: 35%; }
+  .hero-annotation { right: 28px; top: 21%; width: 22%; font-size: .8125rem; }
+  .cinematic-hero .hero-actions { gap: 12px; }
+  .cinematic-hero .button { padding-inline: 18px; }
+}
+@media (max-width: 700px) {
+  .home-hero.cinematic-hero { display: flex; flex-direction: column; align-items: stretch; min-height: auto; padding: calc(var(--header-h) + 112px) 0 24px; }
+  .hero-utility { top: calc(var(--header-h) + 16px); font-size: .8125rem; letter-spacing: 0; gap: 20px; }
+  .hero-utility span { max-width: 50%; }
+  .hero-utility span:last-child { text-align: right; }
+  .hero-backdrop-word { top: auto; bottom: 230px; font-size: 23vw; }
+  .cinematic-hero .hero-grid { order: 1; }
+  .cinematic-hero .hero-copy { width: 100%; }
+  .cinematic-hero .hero-greeting { font-size: 1.8rem; }
+  .cinematic-hero .hero-title { font-size: clamp(3.5rem, 15.8vw, 5rem); }
+  .cinematic-hero .hero-description { max-width: 42ch; font-size: .875rem; }
+  .hero-role { font-size: 1rem; margin-bottom: 18px; }
+  .cinematic-hero .cinematic-portrait { position: relative; order: 3; left: auto; bottom: auto; transform: none; width: min(100%, 430px); margin: 8px auto -10px; }
+  .hero-annotation { position: relative; order: 2; top: auto; bottom: auto; right: auto; width: 240px; margin: 28px 20px 0 auto; font-size: .8125rem; gap: 10px; }
+  .hero-annotation svg { width: 14px; height: 14px; }
+  .cinematic-hero .hero-bottom { position: relative; order: 4; display: flex; bottom: auto; left: auto; right: auto; }
+}
+
+/* The portrait is positioned with translateX; entrance animation stays on its image. */
+.cinematic-hero .cinematic-portrait { animation: none; }
+.cinematic-hero .cinematic-portrait img { animation: portrait-enter 850ms var(--ease-out) 650ms backwards; }
+@media (prefers-reduced-motion: reduce) { .cinematic-hero .cinematic-portrait img { animation: none; } }

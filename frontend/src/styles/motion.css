@@ -1,0 +1,35 @@
+/* A brief brand introduction; it never blocks clicks, focus, or content. */
+.page-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: grid;
+  place-content: center;
+  gap: 22px;
+  background: var(--black);
+  color: var(--off-white);
+  pointer-events: none;
+  animation: intro-dismiss 950ms var(--ease-out) forwards;
+}
+.page-intro-mark { font: 500 clamp(5rem, 16vw, 9rem)/1 var(--serif); letter-spacing: -.08em; animation: intro-mark 550ms var(--ease-out) both; }
+.page-intro-mark span { color: #f1a0a8; }
+.page-intro-track { height: 2px; background: #3b3031; overflow: hidden; }
+.page-intro-track span { display: block; width: 100%; height: 100%; background: #f1a0a8; transform-origin: left; animation: intro-line 650ms var(--ease-out) both; }
+@keyframes intro-mark { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes intro-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes intro-dismiss { 0%, 68% { opacity: 1; visibility: visible; } 100% { opacity: 0; visibility: hidden; } }
+
+.hero-copy > * { animation: enter 700ms var(--ease-out) 650ms backwards; }
+.hero-copy > :nth-child(2) { animation-delay: 720ms; }
+.hero-copy > :nth-child(3) { animation-delay: 790ms; }
+.hero-copy > :nth-child(4) { animation-delay: 860ms; }
+.hero-portrait { animation: portrait-enter 850ms var(--ease-out) 650ms backwards; }
+.hero-title > span { display: block; }
+@keyframes enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes portrait-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.button:active { transform: scale(.98); }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-intro { display: none; }
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
