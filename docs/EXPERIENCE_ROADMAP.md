@@ -17,7 +17,7 @@ Edit `experienceRoadmap` in `frontend/src/content/portfolio.js`. Each entry hold
 
 `ExperienceSection.jsx` renders the years in chronological order as an ordered list, with `aria-current="step"` for the fourth-year entry. Desktop uses a sticky introduction beside the roadmap; tablet uses a compact two-column introduction above it; mobile stacks the introduction and milestones. The shared reveal hook supplies a one-time entrance and cancels movement for reduced motion or keyboard focus.
 
-The existing `ExperienceGallery.jsx` component, images, descriptions, thumbnails, arrows, and lightbox remain unchanged and follow the roadmap. Achievements still follow the gallery when real entries are supplied.
+The existing `ExperienceGallery.jsx` layout, thumbnails, arrows, and lightbox follow the roadmap. Its photos now come from `frontend/src/assets/Awarding`: `team collaboration.webp` supplies Team Collaboration, `webdesign_champion1-9bPkXgsv.webp` supplies Champion Awarding, and `webdesign_champion2-BtAF-fbt.webp` supplies Champion Team. Gallery captions reflect these filenames and photos; no competition dates or additional credentials are inferred. Achievements still follow the gallery when real entries are supplied.
 
 ## Portrait
 

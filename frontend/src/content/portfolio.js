@@ -1,8 +1,8 @@
 import breedSmartOtonIcon from '../assets/images/continuos_evnet/breedsmart.png';
 import mangaflixCover from '../assets/images/mangaflix.jpg';
-import workshopImg from '../assets/images/gallery/workshop.jpg';
-import hackathonImg from '../assets/images/gallery/hackathon.jpg';
-import presentationImg from '../assets/images/gallery/presentation.jpg';
+import teamCollaborationImg from '../assets/Awarding/team collaboration.webp';
+import webDesignAwardingImg from '../assets/Awarding/webdesign_champion1-9bPkXgsv.webp';
+import webDesignTeamImg from '../assets/Awarding/webdesign_champion2-BtAF-fbt.webp';
 import carPassHomepage from '../assets/images/projects/car-pass-homepage.jpg';
 import plustechHomepage from '../assets/images/projects/plustech-homepage.jpg';
 import phinmaEventHomepage from '../assets/images/projects/phinma-event-homepage.jpg';
@@ -137,24 +137,24 @@ export const experienceRoadmap = [
 export const experienceGallery = [
   {
     id: 'slide-1',
-    title: 'Tech Workshops & Hands-on Coding',
-    category: 'Student Workshops',
-    description: 'Collaborative code sessions and technical workshops exploring modern web development, algorithms, and practical programming workflows.',
-    image: workshopImg,
+    title: 'Team Collaboration',
+    category: 'Team Collaboration',
+    description: 'Working alongside teammates during a campus event, sharing ideas and collaborating at the keyboard.',
+    image: teamCollaborationImg,
   },
   {
     id: 'slide-2',
-    title: 'Hackathons & Rapid Prototyping',
-    category: 'Team Collaboration',
-    description: 'Brainstorming architectures, wireframing interfaces, and building working prototypes through focused team sprints.',
-    image: hackathonImg,
+    title: 'Web Design Champions — Awarding',
+    category: 'Champion Awarding',
+    description: 'A team photo from the web design awarding ceremony, celebrating our achievement together.',
+    image: webDesignAwardingImg,
   },
   {
     id: 'slide-3',
-    title: 'Campus Tech Presentations',
-    category: 'Showcase & Events',
-    description: 'Demonstrating web applications and sharing design insights with student peers and faculty members.',
-    image: presentationImg,
+    title: 'Web Design Champions — Team',
+    category: 'Champion Team',
+    description: 'Our web design team portrait, capturing a shared milestone in our college journey.',
+    image: webDesignTeamImg,
   },
 ];
 
