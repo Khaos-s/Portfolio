@@ -1,118 +1,52 @@
-import { useState } from 'react';
-import SectionHeading from './SectionHeading';
+import { Link } from 'react-router-dom';
+import { ArrowUpRight } from 'lucide-react';
 import ExperienceGallery from './ExperienceGallery';
 import AchievementsSection from './AchievementsSection';
-import { experienceChapters, experienceGallery, achievements } from '../../content/portfolio';
+import { experienceRoadmap, experienceGallery, achievements, projects } from '../../content/portfolio';
+import useReveal from '../../lib/useReveal';
 
-const chapters = [
-  { id: 'work', label: 'Work & Projects' },
-  { id: 'education', label: 'Education' },
-  { id: 'community', label: 'Community' },
-];
+function RoadmapMilestone({ milestone }) {
+  const revealRef = useReveal();
+  return (
+    <li className={`roadmap-milestone${milestone.current ? ' is-current' : ''}`} aria-current={milestone.current ? 'step' : undefined}>
+      <article className="roadmap-entry" ref={revealRef}>
+        <div className="roadmap-year"><span>{milestone.year}</span><span>College</span></div>
+        <div className="roadmap-copy">
+          <h3>{milestone.title}</h3>
+          {milestone.current && <p className="roadmap-current">Current</p>}
+          <p className="roadmap-description">{milestone.description}</p>
+          {milestone.projectSlugs.length > 0 && (
+            <ul className="roadmap-projects" aria-label={`${milestone.year} projects`}>
+              {milestone.projectSlugs.map((slug) => {
+                const project = projects.find((item) => item.slug === slug);
+                return <li key={slug}><Link to={`/projects/${slug}`}>{project.title}<ArrowUpRight size={16} aria-hidden="true" /></Link></li>;
+              })}
+            </ul>
+          )}
+        </div>
+      </article>
+    </li>
+  );
+}
 
 export default function ExperienceSection() {
-  const [activeChapter, setActiveChapter] = useState('work');
-
-  const { work, education, community } = experienceChapters;
-
+  const revealRef = useReveal();
   return (
     <section id="experience" className="section experience-section theme-dark" aria-labelledby="experience-title" tabIndex={-1}>
       <div className="container">
-        {/* Section Topline */}
-        <div className="section-topline">
-          <SectionHeading
-            title="Experience & learning"
-            id="experience-title"
-          >
-            People, projects, and communities that have shaped how I work and build.
-          </SectionHeading>
-          <span className="experience-topline-note">A growing practice in tech, design &amp; collaboration.</span>
-        </div>
-
-        {/* Experience Explorer: Chapter Rail + Content */}
-        <div className="experience-explorer">
-          <nav className="experience-rail" aria-label="Experience chapters">
-            {chapters.map((ch) => (
-              <button
-                key={ch.id}
-                type="button"
-                className={`experience-rail-btn ${activeChapter === ch.id ? 'is-active' : ''}`}
-                onClick={() => setActiveChapter(ch.id)}
-                aria-pressed={activeChapter === ch.id}
-              >
-                <span className="rail-btn-label">{ch.label}</span>
-              </button>
-            ))}
-          </nav>
-
-          <div className="experience-detail-panel">
-            {activeChapter === 'work' && (
-              <article className="experience-card work-card">
-                <h3 className="experience-card-title">{work.role}</h3>
-                <div className="experience-card-meta">
-                  <span className="experience-period">{work.period}</span>
-                </div>
-                <p className="experience-card-subtitle">{work.subtitle}</p>
-                <p className="experience-card-desc">{work.description}</p>
-
-                {work.highlights && work.highlights.length > 0 && (
-                  <ul className="experience-highlights">
-                    {work.highlights.map((item, idx) => (
-                      <li key={idx}>{item}</li>
-                    ))}
-                  </ul>
-                )}
-
-                <div className="tag-row">
-                  {work.tags.map((tag) => (
-                    <span key={tag} className="tag">{tag}</span>
-                  ))}
-                </div>
-              </article>
-            )}
-
-            {activeChapter === 'education' && (
-              <div className="education-list">
-                {education.map((item, idx) => (
-                  <article key={idx} className="experience-card education-card">
-                    <div className="experience-card-meta">
-                      <span className="experience-period">{item.period}</span>
-                      <span className="experience-badge">{item.degree}</span>
-                    </div>
-                    <h3 className="experience-card-title">{item.school}</h3>
-                    <p className="experience-card-subtitle">{item.program}</p>
-                    <p className="experience-location-tag">
-                      <span aria-hidden="true">↳ </span>{item.location}
-                    </p>
-                    {item.note && <p className="experience-card-desc">{item.note}</p>}
-                  </article>
-                ))}
-              </div>
-            )}
-
-            {activeChapter === 'community' && (
-              <article className="experience-card community-card">
-                <div className="experience-card-meta">
-                  <span className="experience-period">{community.period}</span>
-                  <span className="experience-badge">Student Chapter</span>
-                </div>
-                <h3 className="experience-card-title">{community.organization}</h3>
-                <p className="experience-card-subtitle">{community.role}</p>
-                <p className="experience-card-desc">{community.description}</p>
-                <div className="tag-row">
-                  {community.tags.map((tag) => (
-                    <span key={tag} className="tag">{tag}</span>
-                  ))}
-                </div>
-              </article>
-            )}
+        <div className="experience-journey">
+          <div className="experience-intro" ref={revealRef}>
+            <h2 id="experience-title">My developer<br />journey</h2>
+            <p>Four college years. A growing collection of ideas turned into working interfaces and applications.</p>
+            <p className="experience-now">Currently a fourth-year BS IT student.</p>
+            <Link className="text-link" to="/projects">Explore the projects <ArrowUpRight size={16} aria-hidden="true" /></Link>
           </div>
+          <ol className="experience-roadmap" role="list" aria-label="College development journey">
+            {experienceRoadmap.map((milestone) => <RoadmapMilestone key={milestone.id} milestone={milestone} />)}
+          </ol>
         </div>
 
-        {/* The Gallery Part */}
         <ExperienceGallery slides={experienceGallery} />
-
-        {/* The Achievements Part (Empty state ready for user manual updates) */}
         {achievements.length > 0 && <AchievementsSection achievements={achievements} />}
       </div>
     </section>

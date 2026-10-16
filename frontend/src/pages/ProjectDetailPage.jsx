@@ -17,7 +17,7 @@ export default function ProjectDetailPage() {
         </div>
       </section>
       <div className="detail-body"><div className="detail-body-inner">
-        {project.logo && <figure className="detail-preview"><img src={project.logo} alt={`${project.title} project preview`} /></figure>}
+        {(project.screenshot || project.logo) && <figure className="detail-preview"><img src={project.screenshot || project.logo} alt={`${project.title} ${project.screenshot ? 'homepage screenshot' : 'project preview'}`} decoding="async" /></figure>}
         <div className="detail-grid">
           <article>
             {project.outcome && <><h2>Project overview</h2><p>{project.outcome}</p></>}

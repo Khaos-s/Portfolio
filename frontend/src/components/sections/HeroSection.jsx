@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Sparkle } from 'lucide-react';
 import Button from '../ui/Button';
-import portrait from '../../assets/images/hero-cinematic-shoulder-fixed.png';
+import portrait from '../../assets/images/hero-cinematic-retouched.png';
 import { profile } from '../../content/portfolio';
 
 export default function HeroSection() {

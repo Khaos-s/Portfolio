@@ -11,7 +11,7 @@ import useSeo from '../lib/seo';
 
 export default function HomePage() {
   useSeo(profile.role, profile.summary);
-  const selected = ['breedsmart-oton', 'mangaflix', 'car-pass'].map((slug) => projects.find((project) => project.slug === slug));
+  const selected = [...projects.filter((project) => project.slug === 'breedsmart-oton'), ...projects.filter((project) => project.featured && project.slug !== 'breedsmart-oton')];
   return (
     <>
       <HeroSection />

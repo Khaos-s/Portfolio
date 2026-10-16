@@ -7,7 +7,7 @@ export default function ProjectCard({ project, featured = false, index }) {
   return (
     <article ref={revealRef} className={`project-card ${featured ? 'project-card-featured' : ''}`}>
       <Link className="project-cover-link" to={`/projects/${project.slug}`} aria-label={`View ${project.title}`}>
-        <ProjectCover logo={project.logo} title={project.title} type={project.type} />
+        <ProjectCover logo={project.logo} screenshot={project.screenshot} title={project.title} />
         <span className="project-open" aria-hidden="true">↗</span>
       </Link>
       <div className="project-card-copy">

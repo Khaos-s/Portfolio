@@ -117,7 +117,7 @@ export default function ProjectReel({ projects, initialProjectSlug }) {
                 aria-label={isActive && project.liveUrl ? `Open ${project.title} live site` : `Select ${project.title}`} 
                 aria-pressed={isActive}
               >
-                <ProjectCover logo={project.logo} title={project.title} />
+                <ProjectCover logo={project.logo} screenshot={project.screenshot} title={project.title} />
                 <span className={`absolute inset-x-0 bottom-0 z-10 grid gap-1 p-4 pt-10 text-white transition-all duration-300 ${isActive ? 'bg-gradient-to-t from-gray-900/95 to-transparent' : 'bg-gradient-to-t from-gray-900/60 to-transparent opacity-60'}`}>
                   <span className="truncate font-['Cormorant_SC'] text-sm font-extrabold leading-tight">{project.title}</span>
                   {isActive && project.liveUrl && <span className="text-[0.62rem] font-extrabold uppercase tracking-widest text-indigo-300">Open live site ↗</span>}
