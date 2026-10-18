@@ -17,7 +17,7 @@ export const profile = {
   location: 'Iloilo, Philippines',
   summary: 'I design and build responsive web interfaces with a focus on clear interaction, maintainable code, and thoughtful details.',
   about: 'I’m John Arvy, a fourth-year BS Information Technology (BS IT) student and full-stack developer. I enjoy connecting thoughtful interface design with practical application logic, turning ideas into useful web experiences.',
-  email: null,
+  email: 'Johnarveylopez0@gmail.com',
   socials: [
     { label: 'GitHub', href: 'https://github.com/Khaos-s', isPlaceholder: false },
     { label: 'LinkedIn', href: 'https://linkedin.com/', isPlaceholder: true },
@@ -134,29 +134,16 @@ export const experienceRoadmap = [
   },
 ];
 
-export const experienceGallery = [
-  {
-    id: 'slide-1',
-    title: 'Team Collaboration',
-    category: 'Team Collaboration',
-    description: 'Working alongside teammates during a campus event, sharing ideas and collaborating at the keyboard.',
-    image: teamCollaborationImg,
-  },
-  {
-    id: 'slide-2',
-    title: 'Web Design Champions — Awarding',
-    category: 'Champion Awarding',
-    description: 'A team photo from the web design awarding ceremony, celebrating our achievement together.',
-    image: webDesignAwardingImg,
-  },
-  {
-    id: 'slide-3',
-    title: 'Web Design Champions — Team',
-    category: 'Champion Team',
-    description: 'Our web design team portrait, capturing a shared milestone in our college journey.',
-    image: webDesignTeamImg,
-  },
-];
+export const experienceGallery = {
+  title: 'Web Design Champion',
+  category: 'Web Design Champion',
+  description: 'Moments with the team, from collaborating at the keyboard to celebrating our web design achievement.',
+  photos: [
+    { image: webDesignAwardingImg, alt: 'The web design team at the awarding ceremony' },
+    { image: webDesignTeamImg, alt: 'The web design champion team posing together' },
+    { image: teamCollaborationImg, alt: 'Teammates collaborating at the keyboard during a campus event' },
+  ],
+};
 
 /**
  * Achievements & Certifications

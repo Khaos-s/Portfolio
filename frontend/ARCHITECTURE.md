@@ -74,6 +74,8 @@ Do not duplicate a project in a page component. Use the project data record and 
 - `Dialog` is used for media previews so keyboard focus, overlay click, and Escape closing work consistently.
 - A section component owns its markup; content belongs in `content/portfolio.js`; route composition belongs in `pages/`.
 - Existing project filters, gallery navigation, media dialogs, route links, and contact submission stay in their domain components. Empty certificate collections are omitted from the homepage until real entries are added.
+- `experienceGallery` is one content object with a shared title/description and a `photos` array of `{ image, alt }` records. `ExperienceGallery` receives it through its `gallery` prop and cycles all three current photos under **Web Design Champion**. Previous/Next buttons overlay the image; there are no thumbnail category selectors. Keyboard arrows, touch swipes, wrapping navigation, and the full-photo dialog share the same photo index.
+- The shared `ContactPanel` places `profile.email` immediately below the introduction as a direct-inquiry `mailto:` link. This public link is independent of the server's `CONTACT_TO_EMAIL` delivery setting.
 
 ## Responsive layout
 

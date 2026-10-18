@@ -46,7 +46,7 @@ export default function ExperienceSection() {
           </ol>
         </div>
 
-        <ExperienceGallery slides={experienceGallery} />
+        <ExperienceGallery gallery={experienceGallery} />
         {achievements.length > 0 && <AchievementsSection achievements={achievements} />}
       </div>
     </section>

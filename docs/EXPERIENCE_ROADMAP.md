@@ -17,7 +17,9 @@ Edit `experienceRoadmap` in `frontend/src/content/portfolio.js`. Each entry hold
 
 `ExperienceSection.jsx` renders the years in chronological order as an ordered list, with `aria-current="step"` for the fourth-year entry. Desktop uses a sticky introduction beside the roadmap; tablet uses a compact two-column introduction above it; mobile stacks the introduction and milestones. The shared reveal hook supplies a one-time entrance and cancels movement for reduced motion or keyboard focus.
 
-The existing `ExperienceGallery.jsx` layout, thumbnails, arrows, and lightbox follow the roadmap. Its photos now come from `frontend/src/assets/Awarding`: `team collaboration.webp` supplies Team Collaboration, `webdesign_champion1-9bPkXgsv.webp` supplies Champion Awarding, and `webdesign_champion2-BtAF-fbt.webp` supplies Champion Team. Gallery captions reflect these filenames and photos; no competition dates or additional credentials are inferred. Achievements still follow the gallery when real entries are supplied.
+`ExperienceGallery.jsx` follows the roadmap as a single **Web Design Champion** photo carousel. It includes all three photos from `frontend/src/assets/Awarding`: the awarding photo (`webdesign_champion1-9bPkXgsv.webp`), champion team portrait (`webdesign_champion2-BtAF-fbt.webp`), and collaboration photo (`team collaboration.webp`). Previous/Next arrows sit over the image with a photo counter; the three selection boxes below have been removed. Arrows, keyboard navigation, swipe gestures, and the lightbox move through the photos while the title and description stay unchanged. Navigation wraps at each end and is hidden for a single photo. No competition dates or additional credentials are inferred. Achievements still follow the gallery when real entries are supplied.
+
+To add another photo, import it in `frontend/src/content/portfolio.js` and append `{ image: importedPhoto, alt: 'Description of the photo' }` to `experienceGallery.photos`. The photo counter and navigation update automatically. `experienceGallery` is one object containing `title`, `category`, `description`, and a nonempty `photos` array.
 
 ## Portrait
 

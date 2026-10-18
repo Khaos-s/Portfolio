@@ -1,132 +1,96 @@
 import { useState, useCallback, useRef } from 'react';
 import { Dialog, DialogCloseButton, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '../ui/Dialog';
 
-export default function ExperienceGallery({ slides = [] }) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+export default function ExperienceGallery({ gallery }) {
+  const [photoIndex, setPhotoIndex] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const touchStartX = useRef(null);
+  const photos = gallery?.photos || [];
+  const total = photos.length;
+  const currentPhoto = photos[photoIndex] || null;
 
-  const total = slides.length;
-  const currentSlide = slides[currentIndex] || null;
-
-  const nextSlide = useCallback(() => {
+  const nextPhoto = useCallback(() => {
     if (total <= 1) return;
-    setCurrentIndex((prev) => (prev + 1) % total);
+    setPhotoIndex((prev) => (prev + 1) % total);
   }, [total]);
 
-  const prevSlide = useCallback(() => {
+  const prevPhoto = useCallback(() => {
     if (total <= 1) return;
-    setCurrentIndex((prev) => (prev - 1 + total) % total);
+    setPhotoIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
   const handleKeyDown = (event) => {
-    if (event.key === 'ArrowRight') { event.preventDefault(); nextSlide(); }
-    if (event.key === 'ArrowLeft') { event.preventDefault(); prevSlide(); }
+    if (event.key === 'ArrowRight') { event.preventDefault(); nextPhoto(); }
+    if (event.key === 'ArrowLeft') { event.preventDefault(); prevPhoto(); }
   };
 
-  // Touch swipe support
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX;
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = (event) => {
     if (touchStartX.current === null) return;
-    const diff = e.changedTouches[0].clientX - touchStartX.current;
-    if (diff > 45) prevSlide();
-    if (diff < -45) nextSlide();
+    const diff = event.changedTouches[0].clientX - touchStartX.current;
+    if (diff > 45) prevPhoto();
+    if (diff < -45) nextPhoto();
     touchStartX.current = null;
   };
 
-  if (!currentSlide) return null;
+  if (!currentPhoto) return null;
 
   return (
     <div className="experience-gallery" onKeyDown={handleKeyDown}>
       <div className="gallery-header">
-        <div>
-          <h3 className="gallery-title">Beyond the screen</h3>
-        </div>
-        <p className="gallery-counter-badge" aria-live="polite">Photo {currentIndex + 1} of {total}</p>
+        <h3 className="gallery-title">Beyond the screen</h3>
+        <p className="gallery-counter-badge" aria-live="polite">Photo {photoIndex + 1} of {total}</p>
       </div>
 
-      <div
-        className="gallery-stage"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        <Dialog open={modalOpen} onOpenChange={setModalOpen}>
-          <DialogTrigger asChild>
-            <button className="gallery-media-wrapper" type="button" aria-label={`View full photo: ${currentSlide.title}`}>
-              <img src={currentSlide.image} alt={currentSlide.title} className="gallery-main-img" loading="lazy" />
-              <span className="gallery-media-overlay"><span className="gallery-zoom-pill">View photo ↗</span></span>
-            </button>
-          </DialogTrigger>
-          <DialogContent>
-            <div className="media-modal-header">
-              <div className="media-modal-meta"><span className="media-modal-badge">{currentSlide.category}</span><DialogTitle className="media-modal-title">{currentSlide.title}</DialogTitle><DialogDescription className="sr-only">{currentSlide.description}</DialogDescription></div>
-              <DialogCloseButton />
+      <div className="gallery-stage" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+        <div className="gallery-photo-frame">
+          <Dialog open={modalOpen} onOpenChange={setModalOpen}>
+            <DialogTrigger asChild>
+              <button className="gallery-media-wrapper" type="button" aria-label={`View full photo: ${gallery.title}`}>
+                <img src={currentPhoto.image} alt={currentPhoto.alt} className="gallery-main-img" loading="lazy" />
+                <span className="gallery-media-overlay"><span className="gallery-zoom-pill">View photo ↗</span></span>
+              </button>
+            </DialogTrigger>
+            <DialogContent>
+              <div className="media-modal-header">
+                <div className="media-modal-meta">
+                  <span className="media-modal-badge">{gallery.category}</span>
+                  <DialogTitle className="media-modal-title">{gallery.title}</DialogTitle>
+                  <DialogDescription className="sr-only">{gallery.description}</DialogDescription>
+                </div>
+                <DialogCloseButton />
+              </div>
+              <div className="media-modal-image-wrapper"><img src={currentPhoto.image} alt={currentPhoto.alt} className="media-modal-img" /></div>
+              <div className="media-modal-footer">
+                <p className="media-modal-desc">{gallery.description}</p>
+                {total > 1 && (
+                  <div className="media-modal-nav">
+                    <button type="button" className="media-modal-nav-btn" aria-label="Previous photo" onClick={prevPhoto}>← Prev</button>
+                    <span className="media-modal-counter" aria-live="polite">{photoIndex + 1} / {total}</span>
+                    <button type="button" className="media-modal-nav-btn" aria-label="Next photo" onClick={nextPhoto}>Next →</button>
+                  </div>
+                )}
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          {total > 1 && (
+            <div className="gallery-photo-controls" role="group" aria-label="Photo carousel controls">
+              <button type="button" className="gallery-btn" onClick={prevPhoto} aria-label="Previous photo">←</button>
+              <span className="gallery-photo-count" aria-hidden="true">{photoIndex + 1} / {total}</span>
+              <button type="button" className="gallery-btn" onClick={nextPhoto} aria-label="Next photo">→</button>
             </div>
-            <div className="media-modal-image-wrapper"><img src={currentSlide.image} alt={currentSlide.title} className="media-modal-img" /></div>
-            <div className="media-modal-footer"><p className="media-modal-desc">{currentSlide.description}</p><div className="media-modal-nav"><button type="button" className="media-modal-nav-btn" onClick={prevSlide}>← Prev</button><span className="media-modal-counter">{currentIndex + 1} / {total}</span><button type="button" className="media-modal-nav-btn" onClick={nextSlide}>Next →</button></div></div>
-          </DialogContent>
-        </Dialog>
+          )}
+        </div>
 
         <div className="gallery-caption-card">
-          <h4 className="gallery-item-title">{currentSlide.title}</h4>
-          <p className="gallery-item-desc">{currentSlide.description}</p>
-
-          <div className="gallery-controls-bar">
-            <div className="gallery-dots">
-              {slides.map((slide, idx) => (
-                <button
-                  key={slide.id}
-                  type="button"
-                  className={`gallery-dot ${idx === currentIndex ? 'is-active' : ''}`}
-                  onClick={() => setCurrentIndex(idx)}
-                  aria-pressed={idx === currentIndex}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-
-            <div className="gallery-nav-buttons">
-              <button
-                type="button"
-                className="gallery-btn"
-                onClick={prevSlide}
-                aria-label="Previous slide"
-              >
-                ←
-              </button>
-              <button
-                type="button"
-                className="gallery-btn"
-                onClick={nextSlide}
-                aria-label="Next slide"
-              >
-                →
-              </button>
-            </div>
-          </div>
+          <h4 className="gallery-item-title">{gallery.title}</h4>
+          <p className="gallery-item-desc">{gallery.description}</p>
         </div>
       </div>
-
-      {/* Thumbnail Bar */}
-      <div className="gallery-thumbnails">
-        {slides.map((slide, idx) => (
-          <button
-            key={slide.id}
-            type="button"
-            className={`gallery-thumb-btn ${idx === currentIndex ? 'is-active' : ''}`}
-            onClick={() => setCurrentIndex(idx)}
-            aria-pressed={idx === currentIndex}
-            aria-label={`Select ${slide.title}`}
-          >
-            <img src={slide.image} alt="" aria-hidden="true" />
-            <span className="thumb-label">{slide.category}</span>
-          </button>
-        ))}
-      </div>
-
     </div>
   );
 }

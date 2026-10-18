@@ -1,61 +1,45 @@
-# John Arvy Lopez Portfolio
+# Portfolio frontend
 
-A responsive React and Vite portfolio with a warm ivory and muted red visual system. The homepage opens with a full-screen hero and scrolls through Work, About, and Contact. Header links navigate to those sections from every route; project archives and details remain separate pages. Serif headings are paired with system sans-serif body text. Experimental animation components remain available in the source.
+React 19 + Vite 7 application for John Arvy Lopez's portfolio. See the [repository README](../README.md) for the live site, feature overview, screenshots, and content/deployment guidance, and [ARCHITECTURE.md](ARCHITECTURE.md) for the component map and design rules.
 
-## Design and components
+## Development
 
-- Local Cormorant Garamond Regular headings and a compact 24px italic monogram.
-- A featured project followed by supporting cards; archive filters use each project's `category`.
-- Shared `ApproachList`, native expandable `Capabilities`, and `ContactPanel` components.
-- Contact topic choices populate the existing API's `subject` field. Delivery still requires Resend configuration; no simulated success is used in the app.
-- Motion includes staggered hero entrances, one-time viewport reveals, card hover feedback, and capability expansion. The scroll cue stops after three cycles. Reduced-motion preferences disable the effects, including JavaScript reveals; focusing content cancels its reveal immediately. No animation library is required.
-
-## Local development
+Run commands from this `frontend/` directory. Node must satisfy `>=20.19.0 <25`.
 
 ```bash
 npm ci
 npm run dev
-npm run lint
-npm run build
 ```
 
-## Content updates
+```bash
+npm run lint
+npm run build
+npm run preview
+```
 
-Portfolio content is centrally stored in `src/content/portfolio.js`. Add verified project descriptions, screenshots, contributions, outcomes, repositories, and live URLs. Unknown fields are null or empty arrays and are hidden on public pages. The public profile uses Iloilo from the latest homepage content; confirm role and location before publishing.
+The project uses the locked npm dependency versions. The production output is `dist/`.
 
-Add a résumé at `public/resume.pdf` only when it is current and ready to share, then add a download link. Navigation currently links to the About page.
+## Content and styling
 
-## Contact form
+- `src/content/portfolio.js`: profile, project records, skills, approach, college roadmap, gallery, and achievements.
+- `src/components/sections/ExperienceGallery.jsx`: a single Web Design Champion carousel; add photos to `experienceGallery.photos` instead of adding category tabs.
+- `src/components/sections/ContactPanel.jsx`: the shared contact introduction, direct email link, and form.
+- `src/styles/tokens.css`: semantic colors, type variables, and dark-section tokens.
+- `src/index.css`: shared layout, component styles, and breakpoints.
+- `src/styles/hero.css` and `src/styles/motion.css`: homepage composition and motion behavior.
 
-The Vercel Function at `api/contact.js` uses Resend. Copy `.env.example` to `.env.local` for local configuration; never commit that file. In Vercel, add these as Sensitive Environment Variables:
+The reference palette is black `#0B0B0B`, crimson `#8B0D1A`, and off-white `#F5F2ED`. Keep changes consistent with these shared tokens and respect reduced-motion preferences.
 
-- `RESEND_API_KEY`
-- `CONTACT_TO_EMAIL`
-- `CONTACT_FROM_EMAIL`
-- `SITE_URL`
+## Contact endpoint
 
-The form includes validation, a honeypot, maximum field sizes, and an optional production-origin check. Add durable rate limiting (for example, Vercel KV/Upstash) before exposing it to high traffic.
+`api/contact.js` is a Vercel Function. Configure `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and optionally `SITE_URL` on the server. The optional origin must match exactly, including `https://` and without a trailing slash.
 
-## Vercel deployment
+The example file `.env.example` contains placeholders only. For local Vercel development, copy it to an ignored `.env.local` and configure credentials privately. Do not commit that file or use the `VITE_` prefix for server secrets.
 
-Import the repository into Vercel and set the project Root Directory to `frontend`.
+Vite dev/preview serves only the frontend; it does not run this function. The contact form treats a missing endpoint or HTML fallback as a failure and preserves the draft. The direct email link does not depend on the API.
 
-- Framework preset: Vite
-- Install command: `npm ci`
-- Build command: `npm run build`
-- Output directory: `dist`
+## Deployment
 
-`vercel.json` contains the SPA fallback needed for React Router routes and baseline response headers. Configure the environment variables, deploy a Preview deployment, test direct visits to `/projects`, `/projects/:slug`, `/resume`, and `/contact`, then attach the production domain.
+Vercel's Root Directory must be `frontend`, with the Vite preset, `npm ci`, `npm run build`, and output directory `dist`. `vercel.json` supplies the SPA rewrite and response security headers.
 
-## Preview and validation
-
-Vite serves the frontend only. Email delivery requires the Vercel Function and configured Resend environment variables. A missing endpoint or HTML fallback is treated as a failure, and the form preserves the draft. Browser checks cover responsive layouts, route navigation, keyboard menu behavior, and mocked contact success/failure; they do not send email.
-
-## Palette
-
-- Page: #F7F5F2
-- Cards: #FFFDFA
-- Soft sections: #EEE9E3
-- Text: #292524
-- Secondary text: #625B55
-- Accent: #A63737
+Validate `/`, `/projects`, a real `/projects/:slug`, `/resume`, and `/contact`, including direct refreshes. Check the carousel's Previous/Next controls and full-photo preview on desktop and mobile. Verify real email delivery separately when the server settings are available.

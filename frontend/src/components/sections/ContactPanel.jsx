@@ -42,8 +42,8 @@ export default function ContactPanel({ headingAs = 'h2' }) {
         <Heading>Let’s build<br />something good.</Heading>
         <p className="contact-intro">A new project, an interface that needs a little care, or a conversation about what’s possible. I’d like to hear it.</p>
         <dl className="contact-details">
+          {profile.email && <div><dt>Direct inquiries</dt><dd><a className="text-link" href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>}
           <div><dt>Based in</dt><dd>{profile.location} <span className="timezone">GMT+8</span></dd></div>
-          {profile.email && <div><dt>Email</dt><dd><a className="text-link" href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>}
           {profile.socials.filter((social) => !social.isPlaceholder).map((social) => <div key={social.label}><dt>Elsewhere</dt><dd><a className="text-link" href={social.href} target="_blank" rel="noreferrer">{social.label} ↗<span className="sr-only"> (new tab)</span></a></dd></div>)}
         </dl>
       </div>
