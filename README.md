@@ -8,7 +8,7 @@ A personal portfolio for a full-stack developer and fourth-year BS Information T
 
 ## What is inside
 
-- **Featured work:** project screenshots, technology tags, repository links, and individual case-study pages.
+- **Featured work:** a scroll-driven stack of pastel project panels, with earlier cards scaling back as the next project rises into view. Each panel retains its screenshot and case-study, live-site, or source links. Small screens and reduced-motion mode use a regular vertical list.
 - **Project archive:** application and design categories, including BreedSmart Oton, Car-Pass, Plustech, PHINMA Event, E-Thrift, Virtual Space Offices, and MangaFlix.
 - **About and capabilities:** a personal introduction, development approach, and expandable toolkit sections.
 - **College roadmap:** the projects behind each year of the development journey.

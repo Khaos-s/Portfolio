@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import HeroSection from '../components/sections/HeroSection';
-import ProjectCard from '../components/projects/ProjectCard';
+import ProjectStack from '../components/projects/ProjectStack';
 import SectionHeading from '../components/sections/SectionHeading';
 import ContactPanel from '../components/sections/ContactPanel';
 import Capabilities from '../components/sections/Capabilities';
@@ -22,7 +22,7 @@ export default function HomePage() {
             <SectionHeading title="Featured projects" id="work-title">Web applications and interfaces, from the first idea to the finished experience.</SectionHeading>
             <Link className="text-link" to="/projects">View all projects ↗</Link>
           </div>
-          <div className="selected-projects">{selected.map((project, index) => <ProjectCard key={project.slug} project={project} featured={index === 0} index={index} />)}</div>
+          <ProjectStack projects={selected} />
           <div className="work-footnote"><span>More experiments, prototypes, and source code.</span><a className="text-link" href={profile.socials[0].href} target="_blank" rel="noreferrer">On GitHub ↗<span className="sr-only"> (new tab)</span></a></div>
         </div>
       </section>
