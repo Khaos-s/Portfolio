@@ -20,7 +20,8 @@ export default function ProjectStack({ projects }) {
 
     const update = () => {
       frame = null;
-      const animated = desktop.matches && !reducedMotion.matches;
+      const animated = !reducedMotion.matches;
+      const viewport = window.innerHeight;
       const positions = animated ? rows.map((row) => ({
         top: row.getBoundingClientRect().top,
         pin: parseFloat(window.getComputedStyle(row).top),
@@ -28,11 +29,14 @@ export default function ProjectStack({ projects }) {
       })) : [];
 
       cards.forEach((card, index) => {
-        const covered = positions.slice(index + 1).reduce((sum, row) => (
+        const covered = animated && desktop.matches ? positions.slice(index + 1).reduce((sum, row) => (
           sum + clamp(1 - (row.top - row.pin) / row.height)
-        ), 0);
-        const scale = Math.max(.82, 1 - covered * .035);
-        const transform = animated ? `scale(${scale})` : 'none';
+        ), 0) : 0;
+        const progress = animated ? clamp((viewport * .9 - positions[index].top) / (viewport * .4)) : 1;
+        const entering = (1 - progress) ** 2;
+        const scale = Math.max(.82, 1 - covered * .035) * (1 - entering * .04);
+        const rise = entering * (desktop.matches ? 48 : 28);
+        const transform = animated ? `translateY(${rise}px) scale(${scale})` : 'none';
         if (card.style.transform !== transform) card.style.transform = transform;
       });
     };
@@ -80,7 +84,7 @@ export default function ProjectStack({ projects }) {
           style={{ '--stack-index': index, zIndex: index + 1 }}
           onFocusCapture={(event) => revealFocusedProject(event, index)}
         >
-          <article className={`project-stack-card project-stack-tone-${index % 5}`} aria-labelledby={`stack-${project.slug}`}>
+          <article className="project-stack-card" aria-labelledby={`stack-${project.slug}`}>
             <div className="project-stack-copy">
               <p className="project-stack-meta">
                 <span>{project.category === 'design' ? 'Interface design' : 'Web application'}</span>
