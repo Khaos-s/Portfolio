@@ -19,7 +19,7 @@ export default function HomePage() {
       <section id="work" className="section work-section theme-dark" aria-labelledby="work-title" tabIndex={-1}>
         <div className="container">
           <div className="section-topline">
-            <SectionHeading title="Featured projects" id="work-title">Web applications and interfaces, from the first idea to the finished experience.</SectionHeading>
+            <SectionHeading eyebrow="01 / Selected work" title="Ideas into interfaces." id="work-title">A selection of applications and design experiments. Built to be used. Made to be explored.</SectionHeading>
             <Link className="text-link" to="/projects">View all projects ↗</Link>
           </div>
           <ProjectStack projects={selected} />

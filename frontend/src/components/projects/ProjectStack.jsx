@@ -29,7 +29,7 @@ export default function ProjectStack({ projects }) {
       })) : [];
 
       cards.forEach((card, index) => {
-        const covered = animated && desktop.matches ? positions.slice(index + 1).reduce((sum, row) => (
+        const covered = animated && stack.dataset.stacking === 'true' ? positions.slice(index + 1).reduce((sum, row) => (
           sum + clamp(1 - (row.top - row.pin) / row.height)
         ), 0) : 0;
         const progress = animated ? clamp((viewport * .9 - positions[index].top) / (viewport * .4)) : 1;
@@ -38,6 +38,7 @@ export default function ProjectStack({ projects }) {
         const rise = entering * (desktop.matches ? 48 : 28);
         const transform = animated ? `translateY(${rise}px) scale(${scale})` : 'none';
         if (card.style.transform !== transform) card.style.transform = transform;
+        card.style.setProperty('--project-enter', entering);
       });
     };
 
@@ -45,22 +46,30 @@ export default function ProjectStack({ projects }) {
       if (frame === null) frame = window.requestAnimationFrame(update);
     };
 
-    const resize = new ResizeObserver(schedule);
+    const fitStack = () => {
+      // Tall cards need normal scrolling so their actions cannot be covered.
+      stack.dataset.stacking = 'true';
+      stack.dataset.stacking = String(!reducedMotion.matches && desktop.matches && rows.every((row) => (
+        row.offsetHeight + parseFloat(window.getComputedStyle(row).top) <= window.innerHeight - 16
+      )));
+      schedule();
+    };
+    const resize = new ResizeObserver(fitStack);
     resize.observe(stack);
     rows.forEach((row) => resize.observe(row));
     window.addEventListener('scroll', schedule, { passive: true });
-    window.addEventListener('resize', schedule);
-    reducedMotion.addEventListener('change', schedule);
-    desktop.addEventListener('change', schedule);
-    schedule();
+    window.addEventListener('resize', fitStack);
+    reducedMotion.addEventListener('change', fitStack);
+    desktop.addEventListener('change', fitStack);
+    fitStack();
 
     return () => {
       if (frame !== null) window.cancelAnimationFrame(frame);
       resize.disconnect();
       window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
-      reducedMotion.removeEventListener('change', schedule);
-      desktop.removeEventListener('change', schedule);
+      window.removeEventListener('resize', fitStack);
+      reducedMotion.removeEventListener('change', fitStack);
+      desktop.removeEventListener('change', fitStack);
     };
   }, [projects]);
 
@@ -85,6 +94,7 @@ export default function ProjectStack({ projects }) {
           onFocusCapture={(event) => revealFocusedProject(event, index)}
         >
           <article className="project-stack-card" aria-labelledby={`stack-${project.slug}`}>
+            <span className="project-stack-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
             <div className="project-stack-copy">
               <p className="project-stack-meta">
                 <span>{project.category === 'design' ? 'Interface design' : 'Web application'}</span>
@@ -102,7 +112,9 @@ export default function ProjectStack({ projects }) {
               </div>
             </div>
             <Link className="project-stack-media" to={`/projects/${project.slug}`} aria-label={`Explore ${project.title}`}>
+              <span className="project-frame-bar" aria-hidden="true"><span className="project-frame-dots">● ● ●</span><span>{project.category === 'design' ? 'Design study' : 'Application preview'}</span><ArrowUpRight size={14} /></span>
               <ProjectCover logo={project.logo} screenshot={project.screenshot} title={project.title} />
+              <span className="project-frame-caption" aria-hidden="true">{project.title}<span>Explore ↗</span></span>
             </Link>
           </article>
         </li>

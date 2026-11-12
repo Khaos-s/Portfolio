@@ -29,6 +29,10 @@ export default function ContactPanel({ headingAs = 'h2' }) {
         signal: AbortSignal.timeout(15000),
       });
       const body = await response.json().catch(() => null);
+      if (response.status === 503) {
+        setStatus({ state: 'error', message: `The contact form is currently unavailable. Please email ${profile.email} directly. Your draft is still here.` });
+        return;
+      }
       if (!response.ok || body?.ok !== true) throw new Error('Your message could not be sent. Please try again later. Your draft is still here.');
       setForm(initialForm);
       setStatus({ state: 'success', message: 'Thanks — your message has been sent. I’ll reply to the email you provided.' });

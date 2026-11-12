@@ -9,7 +9,7 @@ Confirmed directly by John Arvy Lopez on 2026-10-15:
 | 3rd year | Virtual Space Offices, Plustech, Car-Pass, BreedSmart Oton |
 | 4th year | Current college year |
 
-John confirmed his course as BS Information Technology (BS IT) on 2026-10-16. Calendar dates, individual team responsibilities, and future milestones are not inferred. The roadmap replaces the former chapter tabs and unconfirmed education/community placeholders. The About copy identifies John as a fourth-year BS IT student rather than implying a completed degree.
+John confirmed his course as Bachelor of Science in Information Technology (BSIT) on 2026-10-16. Calendar dates, individual team responsibilities, and future milestones are not inferred. The roadmap replaces the former chapter tabs and unconfirmed education/community placeholders. The About copy identifies John as a fourth-year BSIT student rather than implying a completed degree.
 
 ## Content and layout
 

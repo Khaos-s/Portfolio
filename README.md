@@ -1,6 +1,6 @@
 # John Arvy Lopez — Portfolio
 
-A personal portfolio for a full-stack developer and fourth-year BS Information Technology student based in Iloilo, Philippines. Built with React and Vite, the site brings together application projects, design work, a college development roadmap, and ways to get in touch.
+A personal portfolio for a full-stack developer and fourth-year Bachelor of Science in Information Technology (BSIT) student based in Iloilo, Philippines. Built with React and Vite, the site brings together application projects, design work, a college development roadmap, and ways to get in touch.
 
 **[Visit the portfolio](https://johnarvylopez.vercel.app/)** · **[Explore the code](frontend/src)** · **[Contact John](mailto:Johnarveylopez0@gmail.com)**
 
@@ -8,10 +8,10 @@ A personal portfolio for a full-stack developer and fourth-year BS Information T
 
 ## What is inside
 
-- **Featured work:** charcoal project panels with off-white text and crimson buttons rise and gently zoom into view as you scroll. On larger screens, earlier cards scale back into a sticky stack. Phones use the same entrance motion in a vertical list, and reduced-motion mode keeps everything still. Each panel retains its screenshot and case-study, live-site, or source links.
-- **Project archive:** application and design categories, including BreedSmart Oton, Car-Pass, Plustech, PHINMA Event, E-Thrift, Virtual Space Offices, and MangaFlix.
+- **Featured work:** numbered editorial project panels with browser-style image frames, off-white text, and crimson buttons rise and gently zoom into view as you scroll. On larger screens, earlier cards scale back into a sticky stack. Phones use the same entrance motion in a vertical list, and reduced-motion mode keeps everything still. Each panel retains its screenshot and case-study, live-site, or source links.
+- **Project archive:** application and design categories, including BreedSmart Oton, Car-Pass, Plustech, PHINMA Event, E-Thrift, Virtual Space Offices, MangaFlix, PHINMA UI Event, and AI Agent Office HQ.
 - **About and capabilities:** a personal introduction, development approach, and expandable toolkit sections.
-- **College roadmap:** the projects behind each year of the development journey.
+- **College roadmap:** the projects behind each BSIT college year, with oversized year labels and scroll-drawn connecting lines.
 - **Beyond the screen:** one Web Design Champion carousel containing the awarding, team, and collaboration photos. Previous/Next controls sit on the image; keyboard arrows, touch swipes, and a full-photo dialog are supported.
 - **Contact:** a direct email link and a project enquiry form backed by a Vercel Function and Resend.
 - **Responsive and accessible interactions:** mobile navigation, visible keyboard focus, accessible media dialogs, and reduced-motion support.
@@ -48,6 +48,7 @@ Open the local URL printed by Vite.
 | --- | --- |
 | `npm run dev` | Start the development server |
 | `npm run lint` | Check JavaScript and JSX with ESLint |
+| `npm test` | Check contact API validation and delivery failure handling |
 | `npm run build` | Create the production build in `dist/` |
 | `npm run preview` | Preview the production frontend locally |
 

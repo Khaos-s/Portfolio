@@ -19,3 +19,7 @@ Car-Pass and Virtual Space Offices were captured with their data backends offlin
 PHINMA Event's description now reflects the Flask application found locally rather than the older static prototype. Virtual Space Offices was added from its local source and README; no personal role or contributions were inferred.
 
 All screenshots were taken at a 1440px desktop width and saved as compressed JPEGs. Cards contain the complete image to preserve interface labels; project details show it uncropped. The original capture work was kept local for review; Git history records subsequent publishing updates.
+
+## GitHub content refresh — 2026-11-12
+
+Project copy now follows the linked GitHub default branches. The original PHINMA Event repository is an early HTML/CSS prototype with archived Flask/MySQL exercises; its previous screenshot came from a different local application and is no longer rendered. The newer Next.js/Supabase application is listed separately as PHINMA UI Event. It and AI Agent Office HQ use title covers until current screenshots are supplied. Existing screenshots are historical previews, not proof of connected backend behavior. See [repository verification](PROJECT_REPOSITORIES.md).

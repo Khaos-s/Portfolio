@@ -10,7 +10,7 @@ function RoadmapMilestone({ milestone }) {
   return (
     <li className={`roadmap-milestone${milestone.current ? ' is-current' : ''}`} aria-current={milestone.current ? 'step' : undefined}>
       <article className="roadmap-entry" ref={revealRef}>
-        <div className="roadmap-year"><span>{milestone.year}</span><span>College</span></div>
+        <div className="roadmap-year"><span>{milestone.year}</span><span>BSIT</span></div>
         <div className="roadmap-copy">
           <h3>{milestone.title}</h3>
           {milestone.current && <p className="roadmap-current">Current</p>}
@@ -36,9 +36,10 @@ export default function ExperienceSection() {
       <div className="container">
         <div className="experience-journey">
           <div className="experience-intro" ref={revealRef}>
-            <h2 id="experience-title">My developer<br />journey</h2>
+            <p className="eyebrow">02 / The learning curve</p>
+            <h2 id="experience-title">Always learning.<br /><em>Always building.</em></h2>
             <p>Four college years. A growing collection of ideas turned into working interfaces and applications.</p>
-            <p className="experience-now">Currently a fourth-year BS IT student.</p>
+            <div className="experience-degree"><span className="experience-degree-mark" aria-hidden="true">IT</span><div><p>Bachelor of Science in<br />Information Technology</p><span>BSIT · Fourth year / In progress</span></div></div>
             <Link className="text-link" to="/projects">Explore the projects <ArrowUpRight size={16} aria-hidden="true" /></Link>
           </div>
           <ol className="experience-roadmap" role="list" aria-label="College development journey">

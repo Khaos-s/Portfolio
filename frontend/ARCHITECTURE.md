@@ -124,3 +124,18 @@ npm run build
 ```
 
 Then push the verified changes to GitHub. Vercel will build the `frontend` directory on each push to the configured production branch.
+
+## Motion redesign — 2026-11-12
+
+Projects now use numbered editorial panels, browser-style screenshot frames, and entrance-linked image movement. The archive shares the borders and typography. The existing sticky-stack focus handling remains; phones use a vertical list, and reduced motion removes transforms and sticking.
+
+The BSIT timeline uses large year labels, a degree panel, outlined milestones, and scroll-drawn connecting lines where CSS view timelines are supported. Unsupported browsers retain the complete static line. The existing reveal hook, roadmap records, project links, carousel, and media dialogs are reused. Typography and graphics are CSS/HTML; no animation dependency was added. Project source checks are recorded in `../docs/PROJECT_REPOSITORIES.md`.
+
+## Release fixes — 2026-11-12
+
+- ProjectStack measures card heights on resize and only enables sticky stacking when every card fits below its pin position. Tall cards use normal document flow, including at 701 × 620 pixels.
+- The contact endpoint rejects malformed email addresses and times out the email-provider request after 10 seconds, before the client's 15-second limit.
+- An unconfigured contact service returns a clear direct-email fallback while preserving the visitor's draft.
+- `npm test` runs contact endpoint regression checks with mocked delivery. Local browser checks covered desktop, tablet, phone, short viewports, keyboard focus, reduced motion, project filtering/detail routes, gallery/dialog controls, and the unavailable-service form state without sending email.
+
+The production Vercel project had no contact environment variables at release inspection. Real email delivery requires owner-configured Resend credentials and sender/recipient settings.
