@@ -112,7 +112,7 @@ export const projects = [
     screenshot: portfolioHomepage,
     summary: 'This portfolio’s visual system, project navigation, and content model.',
     technologies: ['React', 'Vite', 'Tailwind CSS', 'Resend'], role: 'Personal project', outcome: 'A responsive portfolio that brings project work, capabilities, and contact information together.',
-    challenge: 'Present applications, design work, and a BSIT learning journey in one coherent portfolio.', solution: 'A content-driven React site combines scroll-linked project panels, a college timeline, accessible dialogs, and a Vercel/Resend contact endpoint.', contributions: ['Information architecture', 'Interface implementation'], liveUrl: 'https://johnarvylopez.vercel.app/', repoUrl: 'https://github.com/Khaos-s/Portfolio',
+    challenge: 'Present applications, design work, and a BSIT learning journey in one coherent portfolio.', solution: 'A content-driven React site combines a static featured-project grid, a college timeline, accessible dialogs, and a Vercel/Resend contact endpoint.', contributions: ['Information architecture', 'Interface implementation'], liveUrl: 'https://johnarvylopez.vercel.app/', repoUrl: 'https://github.com/Khaos-s/Portfolio',
   },
 ];
 

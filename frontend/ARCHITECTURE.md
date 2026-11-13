@@ -73,7 +73,7 @@ Do not duplicate a project in a page component. Use the project data record and 
 - `Button` should be used for primary/secondary actions. Use `asChild` when the visual button is a React Router `Link` or a normal anchor.
 - `Dialog` is used for media previews so keyboard focus, overlay click, and Escape closing work consistently.
 - A section component owns its markup; content belongs in `content/portfolio.js`; route composition belongs in `pages/`.
-- The homepage's Featured Projects uses `ProjectStack` and `styles/project-stack.css`, following the supplied scrolling-card video: split copy/image panels using the existing dark surface and text tokens with crimson buttons, sticky cards rising over earlier cards, and scroll-linked scaling of the covered cards. Cards also translate upward and scale into view as they enter the viewport; this motion follows scroll position in either direction. It reuses `ProjectCover`, `Button`, and the existing project data/links. The archive still uses `ProjectCard` with its filters. Small widths and short viewport heights use a vertical list with the entrance motion, while reduced motion disables all card transforms and stacking. Keyboard focus reveals the corresponding card immediately, including when navigating back to an earlier card.
+- The homepage renders four featured projects with the shared static `ProjectCard` component. It uses two columns on larger screens and one column on phones; cards have no reveal, hover-transform, or stacking animation. The archive uses the same component with all project records and its existing filters.
 - Existing project filters, gallery navigation, media dialogs, route links, and contact submission stay in their domain components. Empty certificate collections are omitted from the homepage until real entries are added.
 - `experienceGallery` is one content object with a shared title/description and a `photos` array of `{ image, alt }` records. `ExperienceGallery` receives it through its `gallery` prop and cycles all three current photos under **Web Design Champion**. Previous/Next buttons overlay the image; there are no thumbnail category selectors. Keyboard arrows, touch swipes, wrapping navigation, and the full-photo dialog share the same photo index.
 - The shared `ContactPanel` places `profile.email` immediately below the introduction as a direct-inquiry `mailto:` link. This public link is independent of the server's `CONTACT_TO_EMAIL` delivery setting.
@@ -127,13 +127,13 @@ Then push the verified changes to GitHub. Vercel will build the `frontend` direc
 
 ## Motion redesign — 2026-11-12
 
-Projects now use numbered editorial panels, browser-style screenshot frames, and entrance-linked image movement. The archive shares the borders and typography. The existing sticky-stack focus handling remains; phones use a vertical list, and reduced motion removes transforms and sticking.
+Superseded on 2026-11-13: featured projects now use a static four-item grid. The stack component and its stylesheet were removed; experience motion remains unchanged.
 
 The BSIT timeline uses large year labels, a degree panel, outlined milestones, and scroll-drawn connecting lines where CSS view timelines are supported. Unsupported browsers retain the complete static line. The existing reveal hook, roadmap records, project links, carousel, and media dialogs are reused. Typography and graphics are CSS/HTML; no animation dependency was added. Project source checks are recorded in `../docs/PROJECT_REPOSITORIES.md`.
 
 ## Release fixes — 2026-11-12
 
-- ProjectStack measures card heights on resize and only enables sticky stacking when every card fits below its pin position. Tall cards use normal document flow, including at 701 × 620 pixels.
+- The earlier tall-card stacking fix is superseded by the static four-project grid; project cards now always use normal document flow.
 - The contact endpoint rejects malformed email addresses and times out the email-provider request after 10 seconds, before the client's 15-second limit.
 - An unconfigured contact service returns a clear direct-email fallback while preserving the visitor's draft.
 - `npm test` runs contact endpoint regression checks with mocked delivery. Local browser checks covered desktop, tablet, phone, short viewports, keyboard focus, reduced motion, project filtering/detail routes, gallery/dialog controls, and the unavailable-service form state without sending email.

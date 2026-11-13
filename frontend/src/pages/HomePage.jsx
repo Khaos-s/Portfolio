@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import HeroSection from '../components/sections/HeroSection';
-import ProjectStack from '../components/projects/ProjectStack';
+import ProjectCard from '../components/projects/ProjectCard';
 import SectionHeading from '../components/sections/SectionHeading';
 import ContactPanel from '../components/sections/ContactPanel';
 import Capabilities from '../components/sections/Capabilities';
@@ -11,7 +11,7 @@ import useSeo from '../lib/seo';
 
 export default function HomePage() {
   useSeo(null, profile.summary);
-  const selected = [...projects.filter((project) => project.slug === 'breedsmart-oton'), ...projects.filter((project) => project.featured && project.slug !== 'breedsmart-oton')];
+  const selected = [...projects.filter((project) => project.slug === 'breedsmart-oton'), ...projects.filter((project) => project.featured && project.slug !== 'breedsmart-oton')].slice(0, 4);
   return (
     <>
       <HeroSection />
@@ -19,10 +19,10 @@ export default function HomePage() {
       <section id="work" className="section work-section theme-dark" aria-labelledby="work-title" tabIndex={-1}>
         <div className="container">
           <div className="section-topline">
-            <SectionHeading eyebrow="01 / Selected work" title="Ideas into interfaces." id="work-title">A selection of applications and design experiments. Built to be used. Made to be explored.</SectionHeading>
+            <SectionHeading eyebrow="Selected work" title="Featured projects" id="work-title">Four selected projects across web applications and interface design.</SectionHeading>
             <Link className="text-link" to="/projects">View all projects ↗</Link>
           </div>
-          <ProjectStack projects={selected} />
+          <div className="selected-projects featured-projects">{selected.map((project) => <ProjectCard project={project} key={project.slug} />)}</div>
           <div className="work-footnote"><span>More experiments, prototypes, and source code.</span><a className="text-link" href={profile.socials[0].href} target="_blank" rel="noreferrer">On GitHub ↗<span className="sr-only"> (new tab)</span></a></div>
         </div>
       </section>

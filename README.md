@@ -8,7 +8,7 @@ A personal portfolio for a full-stack developer and fourth-year Bachelor of Scie
 
 ## What is inside
 
-- **Featured work:** numbered editorial project panels with browser-style image frames, off-white text, and crimson buttons rise and gently zoom into view as you scroll. On larger screens, earlier cards scale back into a sticky stack. Phones use the same entrance motion in a vertical list, and reduced-motion mode keeps everything still. Each panel retains its screenshot and case-study, live-site, or source links.
+- **Featured work:** four static project previews in a two-column desktop grid and a single-column phone layout. No card stacking, scroll transforms, entrance motion, or image zoom. Case-study, live-site, and source links remain available.
 - **Project archive:** application and design categories, including BreedSmart Oton, Car-Pass, Plustech, PHINMA Event, E-Thrift, Virtual Space Offices, MangaFlix, PHINMA UI Event, and AI Agent Office HQ.
 - **About and capabilities:** a personal introduction, development approach, and expandable toolkit sections.
 - **College roadmap:** the projects behind each BSIT college year, with oversized year labels and scroll-drawn connecting lines.

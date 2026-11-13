@@ -20,7 +20,7 @@ export default function ProjectsPage() {
         <div className="filter-list" role="group" aria-label="Filter projects">{filters.map((item) => <button key={item.id} type="button" aria-pressed={filter === item.id} onClick={() => setFilter(item.id)}>{item.label}<span>{item.id === 'all' ? projects.length : projects.filter((project) => project.category === item.id).length}</span></button>)}</div>
         <p className="result-count" role="status">{visibleProjects.length} projects</p>
       </div>
-      <div className="project-grid">{visibleProjects.map((project, index) => <ProjectCard project={project} key={project.slug} index={index} />)}</div>
+      <div className="project-grid">{visibleProjects.map((project) => <ProjectCard project={project} key={project.slug} />)}</div>
     </div></div>
   );
 }

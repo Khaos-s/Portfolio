@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import ProjectCover from './ProjectCover';
-import useReveal from '../../lib/useReveal';
 
-export default function ProjectCard({ project, featured = false, index }) {
-  const revealRef = useReveal((index ?? 0) % 3 * 90);
+export default function ProjectCard({ project }) {
   return (
-    <article ref={revealRef} className={`project-card ${featured ? 'project-card-featured' : ''}`}>
+    <article className="project-card">
       <Link className="project-cover-link" to={`/projects/${project.slug}`} aria-label={`View ${project.title}`}>
         <ProjectCover logo={project.logo} screenshot={project.screenshot} title={project.title} />
         <span className="project-open" aria-hidden="true">↗</span>
