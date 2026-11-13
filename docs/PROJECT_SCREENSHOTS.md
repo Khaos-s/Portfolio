@@ -24,13 +24,13 @@ All screenshots were taken at a 1440px desktop width and saved as compressed JPE
 
 Project copy now follows the linked GitHub default branches. The original PHINMA Event repository is an early HTML/CSS prototype with archived Flask/MySQL exercises; its previous screenshot came from a different local application and is no longer rendered. The newer Next.js/Supabase application is listed separately as PHINMA UI Event. Updated on 2026-11-13: it and AI Agent Office HQ now use reviewed screenshots captured from their deployed interfaces. Existing screenshots are historical previews, not proof of connected backend behavior. See [repository verification](PROJECT_REPOSITORIES.md).
 
-## Deployed interface captures — 2026-11-13
+## User-supplied thumbnails — 2026-11-13
 
-| Project | File | Captured screen |
+| Project | File | Supplied screen |
 | --- | --- | --- |
-| AI Agent Office HQ | `ai-agent-office-hq.jpg` | Authenticated office overview at `https://ai-agent-office-hq.vercel.app/`, command panel collapsed and agent-name overlay disabled through the interface. |
-| PHINMA UI Event | `phinma-ui-event-admin.jpg` | Authenticated Manage events screen at `https://phinma-ui-event.vercel.app/admin`, with the Published filter selected. |
+| AI Agent Office HQ | `ai-agent-office-hq.png` | Office overview with agent names and the command panel visible. |
+| PHINMA UI Event | `phinma-ui-event-home.png` | Public campus homepage with the PHINMA UI Event hero. |
 
-Both are unmodified 1440 × 900 JPEG browser captures. They show no passwords, account email addresses, or private event drafts. No events, accounts, approvals, or agent tasks were created or changed. Credentials and browser session data are not stored in the repository. These screenshots are shared by the homepage previews, project archive, and detail pages through `content/portfolio.js`.
+These PNGs are the user's supplied screenshots, copied without cropping or image edits. They replace the earlier office and admin-screen JPEGs. The shared project records display them in the featured grid, archive, and detail pages. Credentials and browser session data are not stored in the repository.
 
-The four homepage entries are BreedSmart Oton, PHINMA UI Event, AI Agent Office HQ, and PlusTech. MangaFlix remains in the full archive.
+The four homepage entries remain BreedSmart Oton, PHINMA UI Event, AI Agent Office HQ, and PlusTech. MangaFlix remains in the full archive.

@@ -9,8 +9,8 @@ import eThriftHomepage from '../assets/images/projects/e-thrift-homepage.jpg';
 import virtualSpaceHomepage from '../assets/images/projects/virtual-space-offices-homepage.jpg';
 import portfolioHomepage from '../assets/images/projects/portfolio-website-homepage.jpg';
 import breedSmartHomepage from '../assets/images/projects/breedsmart-oton-homepage.jpg';
-import aiOfficeScreenshot from '../assets/images/projects/ai-agent-office-hq.jpg';
-import phinmaAdminScreenshot from '../assets/images/projects/phinma-ui-event-admin.jpg';
+import aiOfficeScreenshot from '../assets/images/projects/ai-agent-office-hq.png';
+import phinmaHomeScreenshot from '../assets/images/projects/phinma-ui-event-home.png';
 
 export const profile = {
   name: 'John Arvy Lopez',
@@ -28,7 +28,7 @@ export const profile = {
 export const projects = [
   {
     slug: 'phinma-event-remake', title: 'PHINMA UI Event', type: 'Campus event board', category: 'application', featured: true,
-    screenshot: phinmaAdminScreenshot,
+    screenshot: phinmaHomeScreenshot,
     summary: 'A campus event board where scoped organizers submit proposals and administrators review events for public discovery.',
     technologies: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Tailwind CSS'],
     role: null,
