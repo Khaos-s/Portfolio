@@ -9,6 +9,8 @@ import eThriftHomepage from '../assets/images/projects/e-thrift-homepage.jpg';
 import virtualSpaceHomepage from '../assets/images/projects/virtual-space-offices-homepage.jpg';
 import portfolioHomepage from '../assets/images/projects/portfolio-website-homepage.jpg';
 import breedSmartHomepage from '../assets/images/projects/breedsmart-oton-homepage.jpg';
+import aiOfficeScreenshot from '../assets/images/projects/ai-agent-office-hq.jpg';
+import phinmaAdminScreenshot from '../assets/images/projects/phinma-ui-event-admin.jpg';
 
 export const profile = {
   name: 'John Arvy Lopez',
@@ -26,6 +28,7 @@ export const profile = {
 export const projects = [
   {
     slug: 'phinma-event-remake', title: 'PHINMA UI Event', type: 'Campus event board', category: 'application', featured: true,
+    screenshot: phinmaAdminScreenshot,
     summary: 'A campus event board where scoped organizers submit proposals and administrators review events for public discovery.',
     technologies: ['Next.js', 'React', 'TypeScript', 'Supabase', 'Tailwind CSS'],
     role: null,
@@ -36,16 +39,17 @@ export const projects = [
   },
   {
     slug: 'ai-agent-office-hq', title: 'AI Agent Office HQ', type: 'Interactive agent-office simulation', category: 'application', featured: true,
-    summary: 'A pixel-art virtual office with nine agent departments, shared memory, and a human approval queue.',
+    screenshot: aiOfficeScreenshot,
+    summary: 'A pixel-art virtual office with animated agents, shared memory, and a human approval queue.',
     technologies: ['Next.js', 'React', 'TypeScript', 'Canvas', 'Supabase'],
     role: null,
     outcome: 'An interactive 2D office combines animated agent characters, a searchable shared-memory explorer, audited approval decisions, and scored sample repositories.',
     challenge: 'Make agent roles, shared knowledge, and operator decisions visible in one interactive workspace.',
     solution: 'Canvas renders the office, Next.js API routes manage state, and Supabase stores production records and operator accounts. Agent responses and external actions are simulations; Radar uses sample fixtures rather than live discovery.',
-    contributions: [], liveUrl: null, repoUrl: 'https://github.com/Khaos-s/AI-Agent-Office-HQ-',
+    contributions: [], liveUrl: 'https://ai-agent-office-hq.vercel.app/', repoUrl: 'https://github.com/Khaos-s/AI-Agent-Office-HQ-',
   },
   {
-    slug: 'mangaflix', title: 'MangaFlix', type: 'Digital media platform UI', category: 'design', cover: 'mangaflix', glyph: 'MF', featured: true,
+    slug: 'mangaflix', title: 'MangaFlix', type: 'Digital media platform UI', category: 'design', cover: 'mangaflix', glyph: 'MF', featured: false,
     logo: mangaflixCover,
     summary: 'A cinematic digital media platform mockup for a TV interface.',
     technologies: ['UI/UX Design', 'Generative AI'],
@@ -63,7 +67,7 @@ export const projects = [
     liveUrl: null, repoUrl: 'https://github.com/Khaos-s/car-pass',
   },
   {
-    slug: 'plustech', title: 'Plustech', type: 'Recycling rewards prototype', category: 'application', cover: 'plustech', glyph: 'PT', featured: true,
+    slug: 'plustech', title: 'PlusTech', type: 'Recycling rewards prototype', category: 'application', cover: 'plustech', glyph: 'PT', featured: true,
     screenshot: plustechHomepage,
     summary: 'A student-focused recycling rewards prototype with role-aware dashboards, environmental-impact views, and smart-bin management screens.',
     technologies: ['React', 'Vite', 'Tailwind CSS', 'Firebase', 'Express'],

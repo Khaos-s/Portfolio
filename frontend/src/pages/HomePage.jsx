@@ -11,7 +11,7 @@ import useSeo from '../lib/seo';
 
 export default function HomePage() {
   useSeo(null, profile.summary);
-  const selected = [...projects.filter((project) => project.slug === 'breedsmart-oton'), ...projects.filter((project) => project.featured && project.slug !== 'breedsmart-oton')].slice(0, 4);
+  const selected = ['breedsmart-oton', 'phinma-event-remake', 'ai-agent-office-hq', 'plustech'].map((slug) => projects.find((project) => project.slug === slug));
   return (
     <>
       <HeroSection />
